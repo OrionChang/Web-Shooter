@@ -19,5 +19,23 @@ module WebshooterV1
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.assets.initialize_on_precompile = false
+    
+    config.paperclip_defaults = {
+
+      :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
+      :url => "/screenshots/:id/:style/:basename.:extension",
+      :path => "/screenshots/:id/:style/:basename.:extension",
+      :storage => :fog,
+      :fog_credentials => {
+        :provider => "Google",
+        :google_storage_access_key_id => ENV['GSTORAGE_ACCESS_KEY_ID'],
+        :google_storage_secret_access_key => ENV['GSTORAGE_SECRET_ACCESS_KEY']
+      },
+      :fog_public => true,
+      :fog_host => ENV['GSTORAGE_HOST'],
+      :fog_directory => ENV['GSTORAGE_BUCKET']
+    }
+    
   end
 end
