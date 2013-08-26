@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
+  revision: 571ba865e1cd01f583c5949446803b9f2cd21926
+  branch: 3
+  specs:
+    bootstrap-sass (3.0.0.0)
+      sass (~> 3.2)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: a12dec104dde656917963ec6328390003595234a
   specs:
@@ -206,6 +214,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass!
   coffee-rails (~> 4.0.0)
   devise (= 3.0.0.rc)
   fb_graph
