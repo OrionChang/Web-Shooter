@@ -24,6 +24,19 @@ class RegistrationsController < Devise::RegistrationsController
 		session[:omniauth] = nil unless self.resource.new_record?
 	end
 
+	def edit
+
+
+
+    	if !resource.profile
+
+			resource.build_profile
+			
+		end
+
+		render :edit
+  end
+
 
 
   # PUT /resource
