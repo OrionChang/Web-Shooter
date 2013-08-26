@@ -4,4 +4,8 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
+  has_one :profile, :dependent => :destroy
+  accepts_nested_attributes_for :profile, :allow_destroy => true
 end

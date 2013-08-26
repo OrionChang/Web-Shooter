@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(version: 20130826070707) do
 
   create_table "profiles", force: true do |t|
+    t.integer  "user_id"
     t.string   "nickname"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
