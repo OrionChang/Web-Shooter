@@ -2,20 +2,22 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem "thin"
-gem "figaro"
 gem "bootstrap-sass", :git => "git://github.com/thomas-mcdonald/bootstrap-sass.git", :branch => "3"
+
+
+#################### Server, Heroku, and ENV Variables
+
+gem "thin"
+gem 'rails_12factor', group: :production
+gem "figaro"
 
 #################### Database
 
-group :development, :test do
-	gem 'sqlite3'
-end
 
+gem 'sqlite3', group: [:development, :test]
 
-group :production do
-	gem 'mysql2'
-end
+gem 'mysql2', group: :production
+
 
 #################### Authentication
 
@@ -29,7 +31,6 @@ gem 'fb_graph'
 
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "fog"
-
 
 
 
