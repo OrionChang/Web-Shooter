@@ -17,6 +17,7 @@
 			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
 		</div>
 		<% end %>
+		<%= devise_error_messages! %>
 	</div>
 
 

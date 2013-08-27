@@ -7,11 +7,16 @@ module DeviseHelper
                       :count => resource.errors.count,
                       :resource => resource.class.model_name.human.downcase)
 
+    
+
     html = <<-HTML
-    <div id="error_explanation">
-      <ul>#{messages}</ul>
-    </div>
+
+      <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+            #{messages}
+      </div>
     HTML
+
 
     html.html_safe
   end
