@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/bcardarella/client_side_validations.git
+  revision: 9461cb92e1dfb64895d590c6d435cdf48fcede45
+  branch: 4-0-beta
+  specs:
+    client_side_validations (3.2.2)
+
+GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
   revision: 571ba865e1cd01f583c5949446803b9f2cd21926
   branch: 3
@@ -220,6 +227,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass!
+  client_side_validations!
   coffee-rails (~> 4.0.0)
   devise (= 3.0.0.rc)
   fb_graph

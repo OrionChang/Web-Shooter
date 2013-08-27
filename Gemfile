@@ -15,7 +15,6 @@ gem "figaro"
 
 
 gem 'sqlite3', group: [:development, :test]
-
 gem 'mysql2', group: :production
 
 
@@ -32,6 +31,9 @@ gem 'fb_graph'
 gem "paperclip", :git => "git://github.com/thoughtbot/paperclip.git"
 gem "fog"
 
+#################### Client-side-validations
+
+gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
 
 
 
