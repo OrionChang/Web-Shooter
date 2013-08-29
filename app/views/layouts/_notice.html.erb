@@ -10,7 +10,7 @@
 		<% if user_signed_in? && !current_user.profile && params[:controller] != "registrations"%>
 			<div class="alert alert-danger" style="margin:0px">
 				<a class="close" data-dismiss="alert">&#215;</a>
-				Please set your <strong><%= link_to "profile", edit_user_registration_path, :class => "" %></strong> first.
+				Please update your <strong><%= link_to "profile", edit_user_registration_path, :class => "" %></strong> first.
 			</div>	
 			
 		<% end %>
