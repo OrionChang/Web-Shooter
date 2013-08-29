@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
 
   has_one :profile, :dependent => :destroy
   accepts_nested_attributes_for :profile, :allow_destroy => true
+
+  has_many :webshots
 end

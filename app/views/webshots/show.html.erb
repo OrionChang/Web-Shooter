@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @webshot.user %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @webshot.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @webshot.url %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @webshot.desc %>
+</p>
+
+<p>
+  <strong>Photo:</strong>
+  <%= @webshot.photo %>
+</p>
+
+<%= link_to 'Edit', edit_webshot_path(@webshot) %> |
+<%= link_to 'Back', webshots_path %>

@@ -1,4 +1,12 @@
 WebshooterV1::Application.routes.draw do
+  resources :webshots
+
+  match ':id' => 'webshots#show', as: :show_webshot_path, via: 'get'
+
+
+  match '/share-by-email' => 'shares#share_by_email', via: 'post'
+
+
   devise_for :users, 
               path_names: {
                 sign_in: "login", 

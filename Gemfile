@@ -35,7 +35,8 @@ gem "fog"
 
 gem 'client_side_validations', :git => "git://github.com/bcardarella/client_side_validations.git", :branch => "4-0-beta"
 
-
+#################### Share
+gem 'friendly_id', '5.0.0.beta4'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

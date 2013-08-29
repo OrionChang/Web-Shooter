@@ -23,9 +23,9 @@ module WebshooterV1
     
     config.paperclip_defaults = {
 
-      :styles => { :medium => "300x300>", :thumb => "100x100>" }, 
-      :url => "/screenshots/:id/:style/:basename.:extension",
-      :path => "/screenshots/:id/:style/:basename.:extension",
+      :styles => { :medium => "600x600#", :thumb => "200x200#" }, 
+      :url => "/screenshots/:id/:style.:extension",
+      :path => "/screenshots/:id/:style.:extension",
       :storage => :fog,
       :fog_credentials => {
         :provider => "Google",
@@ -35,6 +35,20 @@ module WebshooterV1
       :fog_public => true,
       :fog_host => ENV['GSTORAGE_HOST'],
       :fog_directory => ENV['GSTORAGE_BUCKET']
+    }
+
+
+
+    config.action_mailer.delivery_method = :smtp
+
+    config.action_mailer.smtp_settings = {
+      address: "smtp.gmail.com",
+      port: 587,
+      domain: ENV["GMAIL_DOMAIN"],
+      authentication: "plain",
+      enable_starttls_auto: true,
+      user_name: ENV["GMAIL_USERNAME"],
+      password: ENV["GMAIL_PASSWORD"]
     }
     
   end

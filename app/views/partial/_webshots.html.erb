@@ -1,0 +1,74 @@
+
+
+<% @webshots.each do |w| %>
+<% odd = cycle("true","false")%>
+
+<div class="row featurette">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h4 class="featurette-heading col-xs-12 col-sm-12 col-md-12 col-lg-12 hideOverflow <%= " align-right pull-right" if odd == "true"%>">
+          <%= w.title %>
+
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div id = "thumbnail-div" class="col-xs-5 col-sm-3 col-lg-3 col-md-3 <%= " align-right pull-right" if odd == "true"%>">
+
+         <%= link_to(image_tag(w.photo.url(:medium), 
+          :alt => "#{w.title}", 
+          :width => 200, 
+          :height => 200, 
+          :title => "#{w.title}",
+          :html => { "data-src" => "holder.js/200x200"}
+          ), webshot_path(w), :class => "thumbnail") %>
+
+      </div>
+      <div class="col-xs-7 col-sm-8 col-md-8 col-lg-8 <%= " align-right pull-right" if odd == "true"%>" style="max-height: 200px;">      
+        <div style="max-height: 200px;">
+
+          <% if w.desc %>
+          <%= truncate(w.desc, length: 250) { link_to "Continue", "#" } %>
+          <% end %>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <p></p>
+        <p class="<%= " align-right pull-right" if odd == "true"%>">
+          <i class="icon-user"></i> by <a href="#"><%= w.user.profile.nickname %></a> 
+          | <i class="icon-calendar"></i> <%= w.created_at.strftime("at %b %d %Y") %>
+          | <i class="icon-comment"></i> <a href="#">3 Comments</a>
+          | <i class="icon-share"></i> <a data-toggle="modal" href=
+          <% if (user_signed_in? && current_user.profile) %> 
+            "#share-by-email-<%= w.id %>" 
+          <% else %>
+            "#please-login-profile" 
+          <% end %>
+
+           ><%= w.shares %> Shares</a>
+          | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a> 
+          <a href="#"><span class="label label-info">Bootstrap</span></a> 
+          <a href="#"><span class="label label-info">UI</span></a> 
+          <a href="#"><span class="label label-info">growth</span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="featurette-divider">
+
+
+<%= render 'partial/share_by_email', w: w %>
+
+
+
+<% end %>
+
+<%= render 'partial/please_login_profile'%>
+
+

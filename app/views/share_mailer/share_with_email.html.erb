@@ -1,0 +1,5 @@
+<%= @user.profile.nickname %> shared a webshot to you.
+
+
+<%=link_to "Click here to view the webshot", :controller => "webshots", :action => "show", :only_path => false, :id => @webshot.id %>
+

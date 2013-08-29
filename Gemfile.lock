@@ -97,6 +97,8 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    friendly_id (5.0.0.beta4)
+      activerecord (~> 4.0.0)
     hashie (2.0.5)
     hike (1.2.3)
     httpauth (0.2.0)
@@ -233,6 +235,7 @@ DEPENDENCIES
   fb_graph
   figaro
   fog
+  friendly_id (= 5.0.0.beta4)
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

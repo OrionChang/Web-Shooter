@@ -1,0 +1,35 @@
+<h1>Listing webshots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Desc</th>
+      <th>Photo</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @webshots.each do |webshot| %>
+      <tr>
+        <td><%= webshot.user %></td>
+        <td><%= webshot.title %></td>
+        <td><%= webshot.url %></td>
+        <td><%= webshot.desc %></td>
+        <td><%= webshot.photo %></td>
+        <td><%= link_to 'Show', webshot %></td>
+        <td><%= link_to 'Edit', edit_webshot_path(webshot) %></td>
+        <td><%= link_to 'Destroy', webshot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Webshot', new_webshot_path %>

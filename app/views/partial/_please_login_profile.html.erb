@@ -1,0 +1,28 @@
+<div id="please-login-profile" class="modal fade text-center" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <hr>
+      <h4 class="modal-title text-muted">
+        <% if current_user %>
+          Please update your profile
+        <% else %>
+          Please login 
+        <% end %>
+      </h4>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <% if current_user %>
+          
+          <%= link_to "Profile", edit_user_registration_path, :class => "btn btn-success" %>
+        <% else %>
+          <%= link_to "Login", new_user_session_path, :class => "btn btn-success" %>
+        <% end %>
+        
+        
+      </div>
+    </div>
+
+    
+    
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<%= form_for(@webshot) do |f| %>
+  <% if @webshot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@webshot.errors.count, "error") %> prohibited this webshot from being saved:</h2>
+
+      <ul>
+      <% @webshot.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %><br>
+    <%= f.text_area :desc %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
