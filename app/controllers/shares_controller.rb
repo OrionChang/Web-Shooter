@@ -1,5 +1,9 @@
 class SharesController < ApplicationController
 
+  before_filter :authenticate_user!
+
+  before_filter :authenticate_user_profile!
+
   # before_action :set_webshot, only: [:show, :edit, :update, :destroy]
 
   # # GET /webshots

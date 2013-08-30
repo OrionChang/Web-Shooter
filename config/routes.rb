@@ -1,7 +1,11 @@
 WebshooterV1::Application.routes.draw do
-  resources :webshots
 
-  match ':id' => 'webshots#show', as: :show_webshot_path, via: 'get'
+  resources :webshots, except: :index
+
+
+  get 'webshots/user/:id' => 'webshots#index', as: :user_webshots
+
+  match ':id' => 'webshots#show', as: :show_webshot, via: 'get'
 
 
   match '/share-by-email' => 'shares#share_by_email', via: 'post'

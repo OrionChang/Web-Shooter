@@ -2,8 +2,13 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-gem "bootstrap-sass", :git => "git://github.com/thomas-mcdonald/bootstrap-sass.git", :branch => "3"
 
+
+
+
+#################### Bootstrap
+gem "bootstrap-sass", :git => "git://github.com/thomas-mcdonald/bootstrap-sass.git", :branch => "3"
+gem 'jasny_bootstrap_extension_rails'
 
 #################### Server, Heroku, and ENV Variables
 
@@ -18,7 +23,7 @@ gem 'sqlite3', group: [:development, :test]
 gem 'mysql2', group: :production
 
 
-#################### Authentication
+#################### Account
 
 gem 'devise', '3.0.0.rc'
 gem 'omniauth-twitter'

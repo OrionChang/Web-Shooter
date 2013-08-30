@@ -25,5 +25,8 @@
   <%= @webshot.photo %>
 </p>
 
-<%= link_to 'Edit', edit_webshot_path(@webshot) %> |
-<%= link_to 'Back', webshots_path %>
+
+<% if current_user && current_user == @webshot.user %>
+<%= link_to 'Edit', edit_webshot_path(@webshot) %> | 
+<% end %>
+<%= link_to 'Back', :back %>

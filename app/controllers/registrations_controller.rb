@@ -1,5 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
-	  before_filter :configure_permitted_parameters, if: :devise_controller?
+	
+
+	before_filter :configure_permitted_parameters, if: :devise_controller?
 
 	def create
 		build_resource(sign_up_params)
@@ -45,6 +47,10 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   protected
+
+  def after_sign_up_path_for(resource)
+      edit_user_registration_path(resource)
+  end
 
 
 

@@ -1,11 +1,19 @@
 class WebshotsController < ApplicationController
   require "open3"
+
+  before_filter :authenticate_user!, only: [:edit, :new, :create, :update, :destroy]
+  before_filter :authenticate_user_profile!, only: [:edit, :new, :create, :update, :destroy]
+  before_filter :authorize_user!, only: [:edit, :update, :destroy]
+
   before_action :set_webshot, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:index]
+
+
 
   # GET /webshots
   # GET /webshots.json
   def index
-    @webshots = current_user.webshots.all
+    @webshots = @user.webshots.where(:saved => true).order('created_at DESC')
   end
 
   # GET /webshots/1
@@ -72,7 +80,7 @@ class WebshotsController < ApplicationController
   def destroy
     @webshot.destroy
     respond_to do |format|
-      format.html { redirect_to webshots_url }
+      format.html { redirect_to :back }
       format.json { head :no_content }
     end
   end
@@ -83,8 +91,22 @@ class WebshotsController < ApplicationController
       @webshot = Webshot.find(params[:id])
     end
 
+    def set_user
+      @user = User.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def webshot_params
       params.require(:webshot).permit(:user_id, :title, :url, :desc, :photo)
+    end
+
+
+
+
+
+    def authorize_user!
+      if current_user != set_webshot.user
+        redirect_to @webshot
+      end
     end
 end

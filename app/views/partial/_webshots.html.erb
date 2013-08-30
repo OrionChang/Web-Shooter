@@ -40,7 +40,16 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <p></p>
         <p class="<%= " align-right pull-right" if odd == "true"%>">
+
+          <% if current_user == w.user %>
+
+          <i class="glyphicon glyphicon-remove-circle"> </i> <%= link_to 'Destroy', w, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+          | <i class="glyphicon glyphicon-edit"> </i> <%= link_to 'Edit', edit_webshot_path(w) %>
+
+          <% else %>
           <i class="glyphicon glyphicon-user"></i> by <a href="#"><%= w.user.profile.nickname %></a> 
+          <% end %>
           | <i class="glyphicon glyphicon-calendar"></i> <%= w.created_at.strftime("at %b %d %Y") %>
           | <!-- <i class="icon-comment"></i> <a href="#">3 Comments</a> -->
           | <i class="glyphicon glyphicon-share"></i> <a data-toggle="modal" href=

@@ -104,6 +104,7 @@ GEM
     httpauth (0.2.0)
     httpclient (2.3.4.1)
     i18n (0.6.5)
+    jasny_bootstrap_extension_rails (0.0.1)
     jbuilder (1.5.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -236,6 +237,7 @@ DEPENDENCIES
   figaro
   fog
   friendly_id (= 5.0.0.beta4)
+  jasny_bootstrap_extension_rails
   jbuilder (~> 1.2)
   jquery-rails
   mysql2

@@ -39,15 +39,39 @@
 @import "bootstrap";
 
 .col-7 {
-	@include make-xs-column(7);
+	@include make-xs-column(12);
 	@include make-sm-column(7);
 	@include make-md-column(7);
 	@include make-lg-column(7);
 }
 
+.col-8 {
+	@include make-xs-column(12);
+	@include make-sm-column(8);
+	@include make-md-column(8);
+	@include make-lg-column(8);
+}
+
 .col-5 {
-	@include make-xs-column(5);
+	@include make-xs-column(12);
 	@include make-sm-column(5);
 	@include make-md-column(5);
 	@include make-lg-column(5);
+
+
+}
+
+
+.col-3 {
+	@include make-xs-column(12);
+	@include make-sm-column(3);
+	@include make-md-column(3);
+	@include make-lg-column(3);
+}
+
+.col-4 {
+	@include make-xs-column(12);
+	@include make-sm-column(4);
+	@include make-md-column(4);
+	@include make-lg-column(4);
 }
