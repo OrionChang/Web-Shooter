@@ -24,7 +24,7 @@ class SharesController < ApplicationController
 
       p = webshot.profile
 
-      p.shares_count = p.shares_count + 1
+      p.shares_count += 1
       p.save
 
       

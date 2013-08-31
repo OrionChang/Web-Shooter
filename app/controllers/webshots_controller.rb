@@ -48,28 +48,45 @@ class WebshotsController < ApplicationController
 
     command = "phantomjs lib/rasterize.js '" + @webshot.url + "' #{Rails.root}/tmp/#{@webshot.id}.png"
     make_log, s = Open3.capture2e(command)
-
-    @webshot.store_temp("#{Rails.root}/tmp/#{@webshot.id}.png")
+    
+    if make_log == "success
+"
+      @webshot.store_temp("#{Rails.root}/tmp/#{@webshot.id}.png")
+    end  
 
     respond_to do |format|
-      if @webshot.save
-        format.html { redirect_to edit_webshot_path(:id => @webshot), notice: 'Webshot was successfully created.' }
-        format.json { render action: 'edit', status: :created, location: @webshot }
+      if make_log == "success
+"
+        if @webshot.save 
+          format.html { redirect_to edit_webshot_path(:id => @webshot), notice: 'Webshot was successfully created.' }
+          format.json { render action: 'edit', status: :created, location: @webshot }
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @webshot.errors, status: :unprocessable_entity }
+        end
       else
+        flash[:alert] = "Sorry, we are unable to process this url at this time. Please try again later."
         format.html { render action: 'new' }
-        format.json { render json: @webshot.errors, status: :unprocessable_entity }
+        format.json { render json: session[:alert], status: :unprocessable_entity }
       end
+
     end
   end
 
   # PATCH/PUT /webshots/1
   # PATCH/PUT /webshots/1.json
   def update
-
-    @webshot.saved = true
+    
+    if @webshot.saved != true
+      @webshot.saved = true
+      @webshot.profile.webshots_count += 1   
+    end
+    
     
     respond_to do |format|
       if @webshot.update(webshot_params)
+
+        @webshot.profile.save
         format.html { redirect_to @webshot, notice: 'Webshot was successfully updated.' }
         format.json { head :no_content }
       else

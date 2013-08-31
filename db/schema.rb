@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20130828134012) do
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
     t.string   "nickname"
-    t.integer  "webshots_count"
-    t.integer  "shares_count"
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "webshots_count",     default: 0
+    t.integer  "shares_count",       default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end

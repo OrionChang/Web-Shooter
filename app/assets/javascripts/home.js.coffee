@@ -10,7 +10,7 @@ $(document).ready ->
 	$(document).delegate "#new_webshot .new-webshot-submit", "click", ->
 		$('#myModal').modal('show')
 
-	$(document).delegate ".modal-dialog .share-by-email-submit","click", ->
+	$(document).delegate ".share-by-email-submit", "click", ->
 
 		if readyToGo == true
 
