@@ -5,6 +5,10 @@ class CreateProfiles < ActiveRecord::Migration
       t.string :nickname
       t.attachment :photo
 
+      t.integer :webshots_count, :default => 0
+      t.integer :shares_count, :default => 0
+
+
       t.timestamps
     end
   end

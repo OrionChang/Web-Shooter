@@ -1,4 +1,4 @@
-<fieldset >
+<fieldset>
 <legend>
 	<%= link_to 'Back', :back , :class => "btn btn-primary"%>
 	<%= link_to 'Share', user_signed_in? && current_user.profile ? "#share-by-email-#{@webshot.id}" : "#please-login-profile", :class => "btn btn-warning", :data => { toggle: "modal"}%>
@@ -11,11 +11,11 @@
 
 </legend>
 
+</fieldset>
 
-<div class="text-center">
+<div class="text-center col-12">
 <%= image_tag(@webshot.photo.url(:original), 
                 :alt => @webshot.url,
-                :title => "Link to full-size image in a new window.",
                 :class => "col-12"
                  )%>
 
@@ -24,7 +24,7 @@
 </div>
 
 
-</fieldset>
+
 
 
 <%= render 'partial/share_by_email', w: @webshot %>

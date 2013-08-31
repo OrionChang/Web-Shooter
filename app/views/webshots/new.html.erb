@@ -1,7 +1,7 @@
 
 <div class="page-header">
   <h1>Take a webshot?</h1>
-  <i><h5 class="text-muted"> Please enter an url to take webshot</h5></i>
+  <i><h5 class="text-muted"> Please enter an url (web address).</h5></i>
 
   <div class="pull-right">
 
@@ -10,17 +10,6 @@
 </div>
 
 <%= form_for(@webshot) do |f| %>
-  <% if @webshot.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@webshot.errors.count, "error") %> prohibited this webshot from being saved:</h2>
-
-      <ul>
-      <% @webshot.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="form-group">
     <%= f.text_field :url, :class => "form-control col-11", :placeholder => "http://www.google.com"%>

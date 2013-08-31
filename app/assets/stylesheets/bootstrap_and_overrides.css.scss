@@ -38,7 +38,7 @@ $iconWhiteSpritePath: url('/assets/glyphicons-halflings-white.png');
 
 
 .featurette-divider {
-  margin: 50px 0;
+  margin: 20px 0;
 }
 
 .featurette-heading {
@@ -139,3 +139,10 @@ $iconWhiteSpritePath: url('/assets/glyphicons-halflings-white.png');
 	@include make-lg-column(3);
 }
 
+.col-12-6 {
+	@include make-xs-column(6);
+	@include make-sm-column(12);
+	@include make-md-column(12);
+	@include make-lg-column(12);
+
+}

@@ -6,6 +6,8 @@ class CreateWebshots < ActiveRecord::Migration
       t.string :url
       t.text :desc
       t.attachment :photo
+      t.boolean :saved, :default => false
+      t.integer :shares_count, :default => 0
 
       t.timestamps
     end

@@ -1,16 +1,20 @@
 <div class="jumbotron text-center">
-  <% if user_signed_in? %>
-  <h1>Welcome back, trusted user!</h1>
+  <% if user_signed_in? && current_user.webshots.count == 0%>
+  <h1>Take a webshot now!</h1>
   <p class="lead">
-    You have signed in!  If this were a real app some sweet conent
-    would go here.  But it's just a test.  You might want to sign out now.
+    Click on the button on the top of this page to <%= link_to "take a webshot", new_webshot_path, :class => "act-danger" %> in few steps.
   </p>
-  <%= link_to "Sign Out", destroy_user_session_path, :method => :delete, :class => 'btn btn-large btn-danger' %>
-  <% else %>
-  <h1>Welcome, new user!</h1>
+
+  <% elsif user_signed_in? && current_user.webshots.count != 0 && current_user.profile.shares_count == 0%>
+    <h1>Share amazing webshots to your friends.</h1>
+    <p class="lead">
+     Do you know you can share your webshots to your friends?
+    </p>
+
+  <% elsif !user_signed_in? %>
+  <h1>Welcome to Web Shooter</h1>
   <p class="lead">
-    You must sign in or sign up before you can access our super sweet,
-    top secret content.
+    Web Shooter helps you to easily capture and share a screenshot image of a public web page from an url. Please login or sign up before using it.
   </p>
   <div class="row centred">
     <div class="col-md-6">
@@ -20,6 +24,9 @@
       <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-lg btn-success" %>
     </div>
   </div>
+  <% else %>
+
+
   <% end %>
 </div>
 

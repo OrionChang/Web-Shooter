@@ -11,7 +11,6 @@ class Profile < ActiveRecord::Base
 	belongs_to :user
 	has_many :webshots, through: :user
 
-
 	validates_presence_of :nickname
 	validates_length_of :nickname, :minimum => 4, :maximum => 24
 end

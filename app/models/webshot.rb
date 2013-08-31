@@ -7,7 +7,7 @@ class Webshot < ActiveRecord::Base
 
 	friendly_id :slug_candidates, use: [:slugged, :finders, :history]
 
-	
+	delegate :profile, :to => :user
 
 
 	has_attached_file :photo,
