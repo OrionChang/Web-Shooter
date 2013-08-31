@@ -29,7 +29,7 @@
     
         <p class="<%= "pull-right" if odd == "true"%>">
           <% if w.desc %>
-          <%= truncate(w.desc, length: 500) { link_to "Continue", "#" } %>
+          <%= truncate(w.desc, length: 500) { link_to " Continue", webshot_path(w), :class => "action-primary" } %>
           <% end %>
         </p>
 
