@@ -1,32 +1,75 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>User:</strong>
-  <%= @webshot.user %>
-</p>
+<div class= "row">
+<h2 class= "featurette-heading text-center"> <%= @webshot.title %> <small><%= get_host_without_www(@webshot.url) if @webshot.title.length < 20 %></small></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @webshot.title %>
-</p>
+    <div class= "pull-right">
+      <% if current_user && current_user == @webshot.user %>
+      <%= link_to 'Delete', @webshot, method: :delete, data: { confirm: 'Are you sure?' } %> |
+      <%= link_to 'Edit', edit_webshot_path(@webshot)%> | 
+      <% end %>
+      <%= link_to 'Back', :back %>
+    </div>
 
-<p>
-  <strong>Url:</strong>
-  <%= @webshot.url %>
-</p>
+<hr />
+</div>
+<div class= "row">
+  
+  <div class= "col-5 pull-right">
 
-<p>
-  <strong>Desc:</strong>
-  <%= @webshot.desc %>
-</p>
-
-<p>
-  <strong>Photo:</strong>
-  <%= @webshot.photo %>
-</p>
+    <div class = "row">
 
 
-<% if current_user && current_user == @webshot.user %>
-<%= link_to 'Edit', edit_webshot_path(@webshot) %> | 
-<% end %>
-<%= link_to 'Back', :back %>
+      <div class = "col-8-all">
+        <i class="glyphicon glyphicon-user"> </i> <%= link_to @webshot.user.profile.nickname, user_webshots_path(@webshot.user)%>  <br />
+        <i class="glyphicon glyphicon-calendar"></i> <%= @webshot.created_at.strftime("%b %d %Y") %><br />
+        <i class="glyphicon glyphicon-share"></i> <a data-toggle="modal" href=
+          <% if (user_signed_in? && current_user.profile) %> 
+            "#share-by-email-<%= @webshot.id %>" 
+          <% else %>
+            "#please-login-profile" 
+          <% end %>
+
+           ><%= @webshot.shares%> Shares</a><br />
+        <i class="glyphicon glyphicon-globe"></i> <%= link_to "Original website", @webshot.url %>
+      </div>
+
+      <div class = "col-3-all">
+        <%= image_tag(@webshot.user.profile.photo.url(:thumb), :class => "img-circle pull-left") %>
+      </div>
+
+    </div>
+    <hr>
+  </div>
+
+
+
+  <div class= "col-7">
+
+
+    <%= link_to(
+      image_tag(@webshot.photo.url(:medium), 
+                :class => "img-responsive", 
+                :alt => @webshot.url,
+                :title => "Link to full-size image in a new window.",
+                :html => { 
+                  "data-src" => "holder.js/500x500/auto"
+                }),
+      full_webshot_path(@webshot),
+      :target => "_blank"
+    ) %>
+
+  </div>
+
+  <div class= "col-5">
+
+
+
+      <p><%= @webshot.desc %></p>
+
+  </div>
+
+</div>
+
+
+
+

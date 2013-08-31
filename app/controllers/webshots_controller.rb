@@ -5,7 +5,7 @@ class WebshotsController < ApplicationController
   before_filter :authenticate_user_profile!, only: [:edit, :new, :create, :update, :destroy]
   before_filter :authorize_user!, only: [:edit, :update, :destroy]
 
-  before_action :set_webshot, only: [:show, :edit, :update, :destroy]
+  before_action :set_webshot, only: [:show, :edit, :update, :destroy, :show_full]
   before_action :set_user, only: [:index]
 
 
@@ -23,6 +23,10 @@ class WebshotsController < ApplicationController
     if request.path != webshot_path(@webshot)
       redirect_to @webshot, status: :moved_permanently
     end
+  end
+
+  def show_full
+    
   end
 
   # GET /webshots/new
@@ -69,6 +73,7 @@ class WebshotsController < ApplicationController
         format.html { redirect_to @webshot, notice: 'Webshot was successfully updated.' }
         format.json { head :no_content }
       else
+
         format.html { render action: 'edit' }
         format.json { render json: @webshot.errors, status: :unprocessable_entity }
       end
@@ -99,7 +104,6 @@ class WebshotsController < ApplicationController
     def webshot_params
       params.require(:webshot).permit(:user_id, :title, :url, :desc, :photo)
     end
-
 
 
 

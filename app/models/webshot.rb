@@ -11,12 +11,12 @@ class Webshot < ActiveRecord::Base
 
 
 	has_attached_file :photo,
-	:styles => { :medium => "600x600^", :thumb => "200x200^" }, 
+	:styles => { :medium => "500x500^", :thumb => "200x200^" }, 
 	:url => "screenshots/:id/:style.:extension",
 	:path => "screenshots/:id/:style.:extension",
 	:convert_options => {
 		:thumb => "-resize '200x200^' -gravity north -crop '200x200+0+0'",
-		:medium => "-resize '600x600^' -gravity north -crop '600x600+0+0'"
+		:medium => "-resize '500x500^' -gravity north -crop '500x500+0+0'"
 	}
 
 
@@ -24,7 +24,7 @@ class Webshot < ActiveRecord::Base
 	validates_presence_of :url
 	validates_presence_of :photo
 	validates_presence_of :title, :if => :webshot_saved?
-	validates_length_of :title, :minimum => 5, :maximum => 100, :allow_blank => true
+	validates_length_of :title, :minimum => 5, :maximum => 50, :allow_blank => true
 	validates_length_of :desc, :minimum => 5, :maximum => 1000, :allow_blank => true
 
 

@@ -16,6 +16,7 @@
 //= require bootstrap
 //= require jasny-bootstrap
 //= require turbolinks
+//= require application
 //= require_tree .
 
 

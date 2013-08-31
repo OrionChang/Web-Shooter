@@ -4,11 +4,14 @@ WebshooterV1::Application.routes.draw do
 
 
   get 'webshots/user/:id' => 'webshots#index', as: :user_webshots
+  get 'webshots/full/:id' => 'webshots#show_full', as: :full_webshot
+  get ':id' => 'webshots#show', as: :show_webshot
+  
+  post '/share-by-email' => 'shares#share_by_email', as: :share_by_email
 
-  match ':id' => 'webshots#show', as: :show_webshot, via: 'get'
 
 
-  match '/share-by-email' => 'shares#share_by_email', via: 'post'
+
 
 
   devise_for :users, 
