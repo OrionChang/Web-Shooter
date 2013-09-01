@@ -13,7 +13,12 @@ class WebshotsController < ApplicationController
   # GET /webshots
   # GET /webshots.json
   def index
-    @webshots = @user.webshots.where(:saved => true).order('created_at DESC')
+    if @user == current_user && @user.profile && @user.profile.nickname
+      @webshots = @user.webshots.where(:saved => true).order('created_at DESC')        
+    else
+      redirect_to edit_user_registration_path, alert: 'Please update your profile (at least your nickname) before next step.'
+    end
+
   end
 
   # GET /webshots/1
