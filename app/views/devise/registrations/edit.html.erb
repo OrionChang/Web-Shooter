@@ -2,98 +2,69 @@
 
 
 <div class = "col-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-<fieldset>
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true, :class => "form-horizontal"}) do |f| %>
-
-
-  <legend>
-    <%= f.submit "Update profile", :class => "btn btn-primary" %>
-  </legend>
-
-
+  <fieldset>
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :multipart => true, :class => "form-horizontal"}) do |f| %>
   
+    <legend>
+      <%= f.submit "Update profile", :class => "btn btn-primary" %>
+    </legend>
 
+    <%= f.fields_for :profile do |p| %>
 
-  
-
-  <%= f.fields_for :profile do |p| %>
-
-
-
-  
-
-
-  <div class="col-5">
-
-
-    <div class="fileupload fileupload-new pull-right" data-provides="fileupload">
-      <div class="fileupload-new thumbnail" style="width: 200px; height: 200px;"><%= image_tag(@user.profile.photo, :width => "200px", :height => "200px") %></div>
-      <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
-      <div>
-        <span class="btn btn-file btn-default">
-          <span class="fileupload-new">Update photo</span>
-          <span class="fileupload-exists">Change</span>
-          <%= p.file_field :photo , :accept => "image/*"%>
-        </span>
-
-        <a href="#" class="btn fileupload-exists btn-danger" data-dismiss="fileupload">Remove</a>
+    <div class="col-5">
+      <div class="fileupload fileupload-new pull-right" data-provides="fileupload">
+        <div class="fileupload-new thumbnail" style="width: 200px; height: 200px;"><%= image_tag(@user.profile.photo, :width => "200px", :height => "200px") %></div>
+        <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 200px; line-height: 20px;"></div>
+        <div>
+          <span class="btn btn-file btn-default">
+            <span class="fileupload-new">Update photo</span>
+            <span class="fileupload-exists">Change</span>
+            <%= p.file_field :photo , :accept => "image/*"%>
+          </span>
+          <a href="#" class="btn fileupload-exists btn-danger" data-dismiss="fileupload">Remove</a>
+        </div>
       </div>
     </div>
+
+    <div class="col-7">
+    <div>
+      <%= p.label :nickname, :class => "control-label" %> <i>(required)</i><br />
+      <%= p.text_field :nickname , :placeholder => "Your nickname"%> 
+    </div>
+    <% end %>
+
+    <div><%= f.label :email %> <i>(required)</i><br />
+      <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+    </div>
+
+    <div>
+      <%= f.label :current_password, :class => "control-label" %> <i>(required)</i><br />
+      <%= f.password_field :current_password , :placeholder => "Current password"%> 
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <hr>
+
+    <fieldset>
+      <legend>Change password</legend>
+      <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+        <%= f.password_field :password, :autocomplete => "off", :placeholder => "Change password" %>
+      </div>
+
+      <div><%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, :placeholder => "Confirm password" %>
+      </div>
+    </fieldset>
+
   </div>
-
-
-  <div class="col-7">
-  <div>
-
-    <%= p.label :nickname, :class => "control-label" %> <i>(required)</i><br />
-    <%= p.text_field :nickname , :placeholder => "Your nickname"%> 
-
-  </div>
-
   <% end %>
 
-  <div><%= f.label :email %> <i>(required)</i><br />
-    <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
-  </div>
-  <div>
-
-    <%= f.label :current_password, :class => "control-label" %> <i>(required)</i><br />
-    <%= f.password_field :current_password , :placeholder => "Current password"%> 
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-  <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <hr>
-
-
-  <fieldset>
-    <legend>Change password</legend>
-    <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, :autocomplete => "off", :placeholder => "Change password" %>
-  </div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, :placeholder => "Confirm password" %>
-  </div>
 
   </fieldset>
-
-</div>
-
-  
-
-
-      <% end %>
-
-
-</fieldset>
-
-
-
-
-      <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
+  <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>
 
 </div>
 

@@ -1,31 +1,31 @@
-	<div id="notice" class="text-center">
-		<% flash.each do |name, msg| %>
-		<div class="alert alert-<%= name == :notice ? "success" : "danger" %>" style="margin:0px">
-			<a class="close" data-dismiss="alert">&#215;</a>
-			<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-		</div>
-		<% end %>
-		<%= devise_error_messages! %>
-
-		<% if user_signed_in? && !current_user.profile && params[:controller] != "registrations"%>
-			<div class="alert alert-danger" style="margin:0px">
-				<a class="close" data-dismiss="alert">&#215;</a>
-				Please update your <strong><%= link_to "profile", edit_user_registration_path, :class => "" %> (at least your nickname)</strong> first.
-			</div>	
-			
-		<% end %>
-
-		<% if @webshot && @webshot.errors.any? %>
-
-		    <% @webshot.errors.full_messages.each do |msg| %>
-
-		    <div class="alert alert-danger" style="margin:0px">
-				<a class="close" data-dismiss="alert">&#215;</a>
-		    	<%= msg %>
-		    </div>
-		    <% end %>
-
-		<% end %>
-
-		
+<div id="notice" class="text-center">
+	<% flash.each do |name, msg| %>
+	<div class="alert alert-<%= name == :notice ? "success" : "danger" %>" style="margin:0px">
+		<a class="close" data-dismiss="alert">&#215;</a>
+		<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
 	</div>
+	<% end %>
+	<%= devise_error_messages! %>
+
+	<% if user_signed_in? && !current_user.profile && params[:controller] != "registrations"%>
+	<div class="alert alert-danger" style="margin:0px">
+		<a class="close" data-dismiss="alert">&#215;</a>
+		Please update your <strong><%= link_to "profile", edit_user_registration_path, :class => "" %> (at least your nickname)</strong> first.
+	</div>	
+	
+	<% end %>
+
+	<% if @webshot && @webshot.errors.any? %>
+
+	<% @webshot.errors.full_messages.each do |msg| %>
+
+	<div class="alert alert-danger" style="margin:0px">
+		<a class="close" data-dismiss="alert">&#215;</a>
+		<%= msg %>
+	</div>
+	<% end %>
+
+	<% end %>
+
+	
+</div>

@@ -1,26 +1,21 @@
 <div class="jumbotron col-12">
 	<div class="col-4">
-
 		<center><%= image_tag(@user.profile.photo.url(:original), :class => "img-circle") %></center>
-
 	</div>
 
 	<div class="col-8" >
 		<div class="row col-11 pull-right" >
 			<p class="lead"><i class="glyphicon glyphicon-user"></i>  <%= @user.profile.nickname %></p>
 			<p class="lead"><i class="glyphicon glyphicon-user"></i>  has <%= @user.profile.webshots_count %> webshots</p>
-			<p class="lead"><i class="glyphicon glyphicon-user"></i>  shared <%= @user.profile.shares_count %> times</p>
-
-
+			<p class="lead"><i class="glyphicon glyphicon-user"></i>  shared <%= @user.profile.shares_count %> times
+			</p>
 		</div>
-
 	</div>
-
 </div>
 
 
 <% if @webshots.count > 0 %>
-<%= render 'partial/webshots' %>
+	<%= render 'partial/webshots' %>
 <% else %>
-No webshots
+	<h1 class="text-center">No webshots</h1>
 <% end %>

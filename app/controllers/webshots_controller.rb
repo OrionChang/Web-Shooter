@@ -9,14 +9,16 @@ class WebshotsController < ApplicationController
   before_action :set_user, only: [:index]
 
 
-
   # GET /webshots
   # GET /webshots.json
   def index
-    if @user == current_user && @user.profile && @user.profile.nickname
-      @webshots = @user.webshots.where(:saved => true).order('created_at DESC')        
-    else
+
+    if @user && @user.profile
+      @webshots = @user.webshots.where(:saved => true).order('created_at DESC')            
+    elsif @user == current_user && !@user.profile
       redirect_to edit_user_registration_path, alert: 'Please update your profile (at least your nickname) before next step.'
+    else
+      redirect_to root_path, alert: "Page doesn't exist."
     end
 
   end
@@ -50,14 +52,11 @@ class WebshotsController < ApplicationController
     @webshot = Webshot.new(webshot_params)
     @webshot.user = current_user   
 
-
     command = "phantomjs lib/rasterize.js '" + @webshot.url + "' #{Rails.root}/tmp/#{@webshot.id}.png"
     make_log, s = Open3.capture2e(command)
     
-    if make_log == "success
-"
-      @webshot.store_temp("#{Rails.root}/tmp/#{@webshot.id}.png")
-    end  
+
+    @webshot.store_temp("#{Rails.root}/tmp/#{@webshot.id}.png")  
 
     respond_to do |format|
       if make_log == "success
@@ -72,7 +71,7 @@ class WebshotsController < ApplicationController
       else
         flash[:alert] = "Sorry, we are unable to process this url at this time. Please try again later."
         format.html { render action: 'new' }
-        format.json { render json: session[:alert], status: :unprocessable_entity }
+        format.json { render json: flash[:alert], status: :unprocessable_entity }
       end
 
     end
@@ -81,16 +80,13 @@ class WebshotsController < ApplicationController
   # PATCH/PUT /webshots/1
   # PATCH/PUT /webshots/1.json
   def update
-    
     if @webshot.saved != true
       @webshot.saved = true
       @webshot.profile.webshots_count += 1   
     end
     
-    
     respond_to do |format|
       if @webshot.update(webshot_params)
-
         @webshot.profile.save
         format.html { redirect_to @webshot, notice: 'Webshot was successfully updated.' }
         format.json { head :no_content }
@@ -126,9 +122,6 @@ class WebshotsController < ApplicationController
     def webshot_params
       params.require(:webshot).permit(:user_id, :title, :url, :desc, :photo)
     end
-
-
-
 
     def authorize_user!
       if current_user != set_webshot.user

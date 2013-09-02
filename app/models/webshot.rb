@@ -11,13 +11,13 @@ class Webshot < ActiveRecord::Base
 
 
 	has_attached_file :photo,
-	:styles => { :medium => "500x500^", :thumb => "200x200^" }, 
-	:url => "screenshots/:id/:style.:extension",
-	:path => "screenshots/:id/:style.:extension",
-	:convert_options => {
-		:thumb => "-resize '200x200^' -gravity north -crop '200x200+0+0'",
-		:medium => "-resize '500x500^' -gravity north -crop '500x500+0+0'"
-	}
+					:styles => { :medium => "500x500^", :thumb => "200x200^" }, 
+					:url => "screenshots/:id/:style.:extension",
+					:path => "screenshots/:id/:style.:extension",
+					:convert_options => {
+						:thumb => "-resize '200x200^' -gravity north -crop '200x200+0+0'",
+						:medium => "-resize '500x500^' -gravity north -crop '500x500+0+0'"
+					}
 
 
 	

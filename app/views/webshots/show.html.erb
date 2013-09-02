@@ -13,9 +13,7 @@
 <hr />
 </div>
 <div class= "row">
-  
   <div class= "col-5 pull-right">
-
     <div class = "row">
       <% if @webshot.profile.photo %>
       <div class = "col-3-all">
@@ -36,19 +34,12 @@
            ><%= @webshot.shares_count%> Shares</a><br />
         <i class="glyphicon glyphicon-globe"></i> <%= link_to "Original page", @webshot.url %>
       </div>
-      
-
-
 
     </div>
     <hr>
   </div>
 
-
-
   <div class= "col-7">
-
-
     <%= link_to(
       image_tag(@webshot.photo.url(:medium), 
                 :class => "img-responsive", 
@@ -61,15 +52,10 @@
       full_webshot_path(@webshot),
       :target => "_blank"
     ) %>
-
   </div>
 
   <div class= "col-5">
-
-
-
       <p><%= @webshot.desc %></p>
-
   </div>
 
 </div>

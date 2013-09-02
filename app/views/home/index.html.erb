@@ -6,28 +6,28 @@
   </p>
 
   <% elsif user_signed_in? && current_user.webshots.count != 0 && current_user.profile.shares_count == 0%>
-    <h1>Share amazing webshots to your friends.</h1>
-    <p class="lead">
-     Do you know you can share your webshots to your friends?
-    </p>
-
-  <% elsif !user_signed_in? %>
-  <h1>Welcome to Web Shooter</h1>
+  <h1>Share amazing webshots to your friends.</h1>
   <p class="lead">
-    Web Shooter helps you to easily capture and share a screenshot image of a public web page from an url. Please login or sign up before using it.
-  </p>
-  <div class="row centred">
-    <div class="col-md-6">
-      <%= link_to "Login", new_user_session_path, :class => "btn btn-lg btn-success" %>
-    </div>
-    <div class="col-md-6">
-      <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-lg btn-success" %>
-    </div>
+   Do you know you can share your webshots to your friends?
+ </p>
+
+ <% elsif !user_signed_in? %>
+ <h1>Welcome to Web Shooter</h1>
+ <p class="lead">
+  Web Shooter helps you to easily capture and share a screenshot image of a public web page from an url. Please login or sign up before using it.
+</p>
+<div class="row">
+  <div class="col-md-6">
+    <%= link_to "Login", new_user_session_path, :class => "btn btn-lg btn-success" %>
   </div>
-  <% else %>
+  <div class="col-md-6">
+    <%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-lg btn-success" %>
+  </div>
+</div>
+<% else %>
 
 
-  <% end %>
+<% end %>
 </div>
 
 <%= render 'partial/webshots' %>
